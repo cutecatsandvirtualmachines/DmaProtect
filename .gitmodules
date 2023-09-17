@@ -1,0 +1,3 @@
+[submodule "kdmapper"]
+	path = kdmapper
+	url = https://github.com/cutecatsandvirtualmachines/kdmapper.git

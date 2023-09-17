@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{2da6f8f4-0a93-4983-8bbf-ef4a840a33f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{de0a9c86-5c03-4091-b1a9-cfd14813fed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dma">
+      <UniqueIdentifier>{bc5c3b8d-0f7c-44d2-a0ab-2c0c6a8850af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\helper">
+      <UniqueIdentifier>{b4d0acd4-25ae-4632-9af8-13c920340ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\dma">
+      <UniqueIdentifier>{c58ce957-8788-42ae-b77d-40d355f99022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\helper">
+      <UniqueIdentifier>{f53b98bc-41f4-4319-99ed-6f9decafeb5e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\acpi.h">
+      <Filter>include\dma</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpu.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\macros.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Memory.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\signatures.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\status.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\iommu.h">
+      <Filter>include\dma</Filter>
+    </ClInclude>
+    <ClInclude Include="include\cpp.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ddma.h">
+      <Filter>include\dma</Filter>
+    </ClInclude>
+    <ClInclude Include="include\win.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pe.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\threading.h">
+      <Filter>include\helper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\acpi.cpp">
+      <Filter>src\dma</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpu.cpp">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Memory.cpp">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\iommu.cpp">
+      <Filter>src\dma</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp.cpp">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ddma.cpp">
+      <Filter>src\dma</Filter>
+    </ClCompile>
+    <ClCompile Include="src\win.cpp">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\threading.cpp">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Docs.md" />
+  </ItemGroup>
+</Project>
