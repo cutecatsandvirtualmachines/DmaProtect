@@ -5,3 +5,5 @@ The projects are currently set for VS 2022, but you can change them however you 
 
 # Project info
 Check out Docs.md for info on how this works
+
+![image](https://github.com/cutecatsandvirtualmachines/cutecatsandvirtualmachines.github.io/assets/145232977/c049a2ac-cd78-4f68-87a4-38e48eb13e28)
