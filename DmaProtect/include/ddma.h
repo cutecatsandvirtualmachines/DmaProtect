@@ -6,7 +6,6 @@
 
 typedef struct _DISK {
     PDEVICE_OBJECT Device;
-
     // Buffer holding sectors original data
     UINT8 Buffer[PAGE_SIZE];
 } DISK, * PDISK;
@@ -14,12 +13,17 @@ typedef struct _DISK {
 class DdmaProvider {
 private:
     PDISK pDisk;
+    BOOLEAN bScsi;
 
 public:
     DdmaProvider();
     ~DdmaProvider();
 
-    NTSTATUS DiskCopy(PVOID dest, PVOID src);
+    NTSTATUS ReadPage(OUT PVOID dest);
+
+    NTSTATUS WritePage(IN PVOID src);
+
+    NTSTATUS DiskCopyPage(PVOID dest, PVOID src);
 };
 
 #endif

@@ -67,12 +67,14 @@ int wmain(const int argc, wchar_t** argv) {
 		}
 	}
 
-	if (drvIndex <= 0) {
-		help();
-		return -1;
-	}
+	std::wstring driver_path = L"";
 
-	const std::wstring driver_path = argv[drvIndex];
+	if (drvIndex <= 0) {
+		driver_path = L"DmaProtect.sys";
+	}
+	else {
+		driver_path = argv[drvIndex];
+	}
 
 	if (!std::filesystem::exists(driver_path)) {
 		Log(L"[-] File " << driver_path << L" doesn't exist" << std::endl);
