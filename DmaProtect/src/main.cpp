@@ -19,11 +19,11 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObj, PUNICODE_STRING pRegistryPath) {
     RtlZeroMemory(pBuffer, PAGE_SIZE);
 
     DdmaProvider dma;
-    dma.DiskCopy(pBuffer, pBase);
+    dma.DiskCopyPage(pBuffer, pBase);
 
     PVOID pBufferPost = cpp::kMalloc(PAGE_SIZE);
     RtlZeroMemory(pBufferPost, PAGE_SIZE);
-    dma.DiskCopy(pBufferPost, pBase);
+    dma.DiskCopyPage(pBufferPost, pBase);
 
     bool bEqual = memcmp(pBuffer, pBufferPost, PAGE_SIZE) == 0;
 

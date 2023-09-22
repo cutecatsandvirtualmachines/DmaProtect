@@ -76,7 +76,7 @@ BOOLEAN SCSIBuild10CDB(PSCSI_PASS_THROUGH_DIRECT srb, ULONGLONG offset, ULONG le
     return TRUE;
 }
 
-NTSTATUS ScsiIssueCommand(IN PDEVICE_OBJECT device, IN USHORT flag, IN UCHAR operationCode, IN PVOID buffer) {
+NTSTATUS ScsiIssueCommand(IN PDEVICE_OBJECT device, IN UCHAR operationCode, IN PVOID buffer) {
     KEVENT event;
     KeInitializeEvent(&event, SynchronizationEvent, FALSE);
 
@@ -129,7 +129,7 @@ NTSTATUS AtaWritePage(IN PDEVICE_OBJECT device, IN PVOID src) {
 }
 
 NTSTATUS ScsiReadPage(IN PDEVICE_OBJECT device, OUT PVOID dest) {
-    NTSTATUS ntStatus = ScsiIssueCommand(device, SRB_FLAGS_DATA_IN, SCSIOP_READ, dest);
+    NTSTATUS ntStatus = ScsiIssueCommand(device, SCSIOP_READ, dest);
     if (!NT_SUCCESS(ntStatus)) {
         DbgPrintEx(0, 0, "Failed SCSI read: 0x%x", ntStatus);
     }
@@ -137,7 +137,7 @@ NTSTATUS ScsiReadPage(IN PDEVICE_OBJECT device, OUT PVOID dest) {
 }
 
 NTSTATUS ScsiWritePage(IN PDEVICE_OBJECT device, IN PVOID src) {
-    NTSTATUS ntStatus = ScsiIssueCommand(device, SRB_FLAGS_DATA_OUT, SCSIOP_WRITE, src);
+    NTSTATUS ntStatus = ScsiIssueCommand(device, SCSIOP_WRITE, src);
     if (!NT_SUCCESS(ntStatus)) {
         DbgPrintEx(0, 0, "Failed SCSI write: 0x%x", ntStatus);
     }
