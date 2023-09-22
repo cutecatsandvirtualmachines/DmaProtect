@@ -13,13 +13,27 @@ PIMAGE_NT_HEADERS64 GetNtHeaders(void* image_base) {
 NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObj, PUNICODE_STRING pRegistryPath) {
     UNREFERENCED_PARAMETER(pRegistryPath);
 
+    CPU::Init();
+
+    if (!iommu::Init()) {
+        DbgMsg("[DMA] Failed initializing DMA protection!");
+        return STATUS_DMA_REMAPPING_NOT_AVAILABLE;
+    }
+
     PVOID pBase = pDriverObj;
+    PIMAGE_NT_HEADERS64 pNtHeader = GetNtHeaders(pBase);
 
     PVOID pBuffer = cpp::kMalloc(PAGE_SIZE);
     RtlZeroMemory(pBuffer, PAGE_SIZE);
 
     DdmaProvider dma;
     dma.DiskCopyPage(pBuffer, pBase);
+
+    if (!iommu::HidePageRange(pBase, pNtHeader->OptionalHeader.SizeOfImage)) {
+        DbgMsg("[DMA] Failed protecting from DMA accesses!");
+        return STATUS_DMA_REMAPPING_FAILED;
+    }
+    iommu::EnableIommu();
 
     PVOID pBufferPost = cpp::kMalloc(PAGE_SIZE);
     RtlZeroMemory(pBufferPost, PAGE_SIZE);
@@ -29,9 +43,8 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObj, PUNICODE_STRING pRegistryPath) {
 
     DbgMsg("[RESULT] DMA remapping %s", bEqual ? "didn't work" : "worked");
 
-    DbgMsg("[TEST] MZ check: %s", pBase);
     DbgMsg("[TEST] MZ check: %s", pBuffer);
     DbgMsg("[TEST] MZ check: %s", pBufferPost);
 
-	return STATUS_SUCCESS;
+    return STATUS_SUCCESS;
 }
